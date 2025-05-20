@@ -1,11 +1,7 @@
 from datetime import datetime
-from file_maker import FileMaker
 
 class DateTime:
-    def current_datetime(self, file_name):
-        #Get the file name from the user
-        file_name = FileMaker().file_maker()
-
+    def current_datetime(file_name):
         with open(file_name, "a") as quiz_file:
                 #Get the current date and time
                 now = datetime.now()
