@@ -11,7 +11,7 @@ def create_quiz():
     question_number = QuestionChecker.question_checker(file_name)
     
     #Get the current date and time
-    now = DateTime.current_datetime(file_name) #Write the date and time to the file
+    DateTime.current_datetime(file_name) #Write the date and time to the file
 
     #Open the file in append mode to create if exists or create a new one
     with open(file_name, "a") as quiz_file:
