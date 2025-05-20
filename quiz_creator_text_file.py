@@ -1,7 +1,6 @@
-import os 
-from datetime import datetime
 from file_maker import FileMaker
 from question_checker import QuestionChecker
+from current_datetime import DateTime
 
 #Function to asks the user for questions and answers and writes them to the file
 def create_quiz():
@@ -11,15 +10,11 @@ def create_quiz():
     #Starts the Question number at 1
     question_number = QuestionChecker.question_checker(file_name)
     
+    #Get the current date and time
+    now = DateTime.current_datetime(file_name) #Write the date and time to the file
+
     #Open the file in append mode to create if exists or create a new one
     with open(file_name, "a") as quiz_file:
-        #Get the current date and time
-        now = datetime.now()
-        current_time_date = now.strftime("%m/%d/%Y %H:%M:%S")
-
-        quiz_file.write(f"Quiz Created - {current_time_date}\n")
-        quiz_file.write("\n")
-
         #While true for a loop to allow the user to decide when to stop entering questions
         while True: 
             question = input("Enter a question: ") 
