@@ -2,7 +2,7 @@ from file_maker import FileMaker
 from question_checker import QuestionChecker
 from current_datetime import DateTime
 
-class QuizCreator:
+class QuizCreate:
     def __init__(self):
         self.file_name = FileMaker().file_maker()                                  #Get the file name from the user
         self.question_number = QuestionChecker.question_checker(self.file_name)     #Starts the Question number at 1
@@ -17,8 +17,8 @@ class QuizCreator:
             #While true for a loop to allow the user to decide when to stop entering questions
             while True: 
                 question = input("Enter a question: ") 
-                quiz_file.write(f"Question {question_number}:\n {question}\n") 
-                question_number += 1
+                quiz_file.write(f"Question {self.question_number}:\n {question}\n") 
+                self.question_number += 1
 
                 #Ask the user for choices 
                 for option in ["a", "b", "c", "d"]: 
