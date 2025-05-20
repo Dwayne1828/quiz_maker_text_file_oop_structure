@@ -1,28 +1,7 @@
 import os 
 from datetime import datetime
+from file_maker import FileMaker
 
-def file_maker(): 
-    while True:   
-        file_name = input("Enter the file name for your quiz: ").strip()
-        #Check if the file name ends with .txt, if not add it
-        if not file_name.endswith(".txt"):
-            file_name += ".txt"
-
-        #Check if the file already exists, if it does ask the user if they want to edit it or create a new one
-        if os.path.exists(file_name): 
-            edit = input("File already exists. Do you wish to edit the file? (yes/no): ")
-            if edit.lower().strip() == "yes": 
-                return file_name
-            elif edit.lower().strip() == "no": 
-                ask_again = input("Do you want to create a new file? (yes/no): ")
-                if ask_again.lower().strip() == "yes": 
-                    continue
-                else: 
-                    print("Exiting...")
-                    exit()
-        #If the file does not exist, return the file name       
-        else: 
-            return file_name
 
 def question_checker(file_name):
     #Check if the file exists, if not return 0
@@ -45,7 +24,8 @@ def question_checker(file_name):
 #Function to asks the user for questions and answers and writes them to the file
 def create_quiz():
     #Get the file name from the user
-    file_name = file_maker()
+    making_file = FileMaker()
+    file_name = making_file.file_maker()
     
     #Starts the Question number at 1
     question_number = question_checker(file_name)
