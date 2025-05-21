@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 from choices_radio_btn import ChoicesRadioBtn
 from quiz_reader import QuizReader
-from start_quiz import StartQuiz
 
 class QuizManage():
     def __init__(self, root, file_name): 
@@ -11,7 +10,7 @@ class QuizManage():
         self.root = root
         self.choosed_answer = tk.IntVar(master=root)
         
-        self.question_no = 0
+        self.question_no = 0 
         self.correct_ans = 0
         self.wrong_ans = 0
         self.question_reader = QuizReader(self.file_name) #Creates an instance of the QuizReader class
@@ -92,18 +91,19 @@ class QuizManage():
 
 
     def ask_to_restart(self):
-        from start_quiz import StartQuiz
         result = messagebox.askyesno("Quiz Finished", "Do you want to choose a new file?")
         
         if result:
             for widget in self.root.winfo_children():
                 widget.destroy()
-
+            from start_quiz import StartQuiz
             restart_quiz = StartQuiz(self.root)
-            restart_quiz.start_quiz_with_file()
+            file_path = restart_quiz.start_quiz_with_file()
+            if file_path:
+                QuizManage(self.root, file_path)
         else:
             self.root.quit()
-
+        
 
     def quiz_result(self):
         score = f"Your score: {self.correct_ans}/{len(self.questions)}\n Wrong: {self.wrong_ans}" #Calculates the number of correct answers

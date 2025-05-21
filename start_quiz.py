@@ -1,5 +1,4 @@
-from tkinter import messagebox
-import tkinter as filedialog
+from tkinter import messagebox, filedialog
 
 class StartQuiz:
     def __init__(self, root):
@@ -8,7 +7,7 @@ class StartQuiz:
     def start_quiz_with_file(self):
         # Open a file dialog to select a quiz file
         file_path = filedialog.askopenfilename(title="Select Quiz File", 
-                                            filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
+                                               filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
         
         if file_path:
             return file_path
