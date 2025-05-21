@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, filedialog
-from quiz_manager import QuizManager
+from quiz_manager_oop import QuizManager
 
 class StartQuiz:
     def start_quiz_with_file(root):
