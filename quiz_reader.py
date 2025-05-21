@@ -2,10 +2,9 @@ from tkinter import messagebox, filedialog
 from tkinter import Tk
 
 class QuizReader:
-    def __init__(self, file_name):
-        self.file_name = file_name
+    def quiz_reader(self, file_name): 
+            self.file_name = file_name #Initialize the file name
 
-    def quiz_reader(self): 
             with open(self.file_name, "r") as file:
                 lines = file.readlines() #Stores the lines in a list 
         
