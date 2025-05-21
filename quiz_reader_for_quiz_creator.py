@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, filedialog
-from quiz_manager_oop import QuizManager
+from quiz_manager_oop import QuizManage
 
 class StartQuiz:
     def start_quiz_with_file(root):
@@ -9,7 +9,7 @@ class StartQuiz:
                                             filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
         
         if file_path:
-            QuizManager(root, file_path)
+            QuizManage(root, file_path)
             root.title("Quiz")
             root.geometry("800x450")
             root.configure(bg="light blue")
