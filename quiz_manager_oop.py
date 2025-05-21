@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from choices_radio_btn import ChoicesRadioBtn
 from quiz_reader import QuizReader
+from start_quiz import StartQuiz
 
 class QuizManage():
     def __init__(self, root, file_name): 
@@ -91,12 +92,15 @@ class QuizManage():
 
 
     def ask_to_restart(self):
-        from quiz_reader_for_quiz_creator import StartQuiz
+        from start_quiz import StartQuiz
         result = messagebox.askyesno("Quiz Finished", "Do you want to choose a new file?")
+        
         if result:
             for widget in self.root.winfo_children():
                 widget.destroy()
-            StartQuiz.start_quiz_with_file(self.root)
+
+            restart_quiz = StartQuiz(self.root)
+            restart_quiz.start_quiz_with_file()
         else:
             self.root.quit()
 
