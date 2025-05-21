@@ -14,7 +14,8 @@ class StartQuiz:
         else:
             result = messagebox.askyesno("No File Selected", "You must select a quiz file to start.\n Do you wish to Continue?")
             if result:
-                return self.start_quiz_with_file(self.root)
+                return self.start_quiz_with_file()
             else: 
                 self.root.quit()
+                return None
                 
