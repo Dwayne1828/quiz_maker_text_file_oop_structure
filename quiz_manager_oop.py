@@ -6,14 +6,15 @@ from quiz_reader import QuizReader
 class QuizManage():
     def __init__(self, root, file_name): 
         self.file_name = file_name #Initialize the file name
-        self.root = root
         
+        self.root = root
         self.choosed_answer = tk.IntVar(master=root)
-       
+        
         self.question_no = 0
         self.correct_ans = 0
         self.wrong_ans = 0
-        self.questions = QuizReader.quiz_reader(self.file_name) #Calls the quiz_reader method to read the quiz file and store the questions
+        self.question_reader = QuizReader(self.file_name) #Creates an instance of the QuizReader class
+        self.questions = self.question_reader.quiz_reader() #Calls the quiz_reader method to read the quiz file and store the questions
 
         self.display_question = tk.Label(self.root, text="Ready?", font=("Helvetica", 25, "bold"), 
                                          fg="blue", bg="light blue") #Creates a label to display the quiz questions
@@ -31,8 +32,11 @@ class QuizManage():
             self.next_button.config(text="Continue", command=self.current_check_answer, 
                                     bg="blue", fg="white", font=("Helvetica", 12)) #Changes the button text to "Next"
             self.next_button.place(relx=0.5, rely=0.7, anchor="center") #Places the button in the center of the window
-            self.radio_btn = ChoicesRadioBtn.choices_radio_btn() 
+            
+            self.radio_btn = ChoicesRadioBtn(self.root, self.choosed_answer)
+            self.radio_btn = self.radio_btn.create_radio_buttons()
             self.options_question_no()
+            
             self.display_question.config(text=self.questions[self.question_no]["question"].strip(), 
                                          font=("Helvetica", 14), wraplength=600, bg="light blue", fg="#222")
             self.display_question.place(relx=0.5, rely=0.3, anchor="center") #Displays the question in the label
