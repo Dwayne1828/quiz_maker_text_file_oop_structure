@@ -1,5 +1,10 @@
+import tkinter as tk
+from tkinter import messagebox
+from choices_radio_btn import ChoicesRadioBtn
+from quiz_reader import QuizReader
+from quiz_reader_for_quiz_creator import StartQuiz
 
-class QuizReader:
+class QuizManager():
     def __init__(self, root, file_name): 
         self.file_name = file_name #Initialize the file name
         self.root = root
@@ -9,7 +14,7 @@ class QuizReader:
         self.question_no = 0
         self.correct_ans = 0
         self.wrong_ans = 0
-        self.questions = self.quiz_reader() #Calls the quiz_reader method to read the quiz file and store the questions
+        self.questions = QuizReader.quiz_reader(self.file_name) #Calls the quiz_reader method to read the quiz file and store the questions
 
         self.display_question = tk.Label(self.root, text="Ready?", font=("Helvetica", 25, "bold"), 
                                          fg="blue", bg="light blue") #Creates a label to display the quiz questions
@@ -27,7 +32,7 @@ class QuizReader:
             self.next_button.config(text="Continue", command=self.current_check_answer, 
                                     bg="blue", fg="white", font=("Helvetica", 12)) #Changes the button text to "Next"
             self.next_button.place(relx=0.5, rely=0.7, anchor="center") #Places the button in the center of the window
-            self.radio_btn = self.choices_radio_btn() 
+            self.radio_btn = ChoicesRadioBtn.choices_radio_btn() 
             self.options_question_no()
             self.display_question.config(text=self.questions[self.question_no]["question"].strip(), 
                                          font=("Helvetica", 14), wraplength=600, bg="light blue", fg="#222")
@@ -87,7 +92,7 @@ class QuizReader:
         if result:
             for widget in self.root.winfo_children():
                 widget.destroy()
-            start_quiz_with_file(root)
+            StartQuiz.start_quiz_with_file(self.root)
         else:
             self.root.quit()
 
